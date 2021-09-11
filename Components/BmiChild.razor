@@ -1,0 +1,29 @@
+﻿<tr>
+	<td>@Name</td>
+	<td>@Height</td>
+	<td>@Weight</td>
+	<td>@item.Bmi.ToString("00,0")</td>
+</tr>
+
+@code {
+	[Parameter]
+	public string Name { get; set; }
+	[Parameter]
+	public double Height { get; set; }
+	[Parameter]
+	public double Weight { get; set; }
+	[Parameter]
+	public RenderFragment ChildContent {
+		get; set;
+	}
+
+	private BmiItem item;
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		item = new BmiItem() {
+			Name=Name,Height=Height,Weight=Weight};
+
+	}
+}

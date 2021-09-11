@@ -1,0 +1,36 @@
+﻿@page "/bmilist"
+<h3>Bmi</h3>
+<table class="table">
+	<thead class="thead-light">
+		<tr>
+			<td>名前</td>
+			<td>身長</td>
+			<td>体重</td>
+			<td>BMI</td>
+		</tr>
+	</thead>
+	@foreach (var it in Items)
+	{
+		<BlazorHello.Components.BmiChildItem Item="@it" />
+	}
+	@foreach (var it in Items)
+	{
+		var attrs = new Dictionary<string, object>() { { "Name", it.Name }, { "Weight", it.Weight }, { "Height", it.Height } };
+		<BlazorHello.Components.BmiChild @attributes="attrs"/>
+	}
+</table>
+@code {
+	private string fontSize = "32px";
+	private List<BmiItem> Items { get; set; }
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		this.Items = new List<BmiItem>();
+		this.Items.Add(new BmiItem() { Name = "森泉友登1", Height = 160.0, Weight = 60.0, });
+		this.Items.Add(new BmiItem() { Name = "森泉友登2", Height = 162.0, Weight = 62.0, });
+		this.Items.Add(new BmiItem() { Name = "森泉友登3", Height = 162.0, Weight = 62.0, });
+		this.Items.Add(new BmiItem() { Name = "森泉友登4", Height = 166.0, Weight = 67.0, });
+
+	}
+
+}
